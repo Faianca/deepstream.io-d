@@ -1,0 +1,5 @@
+name "deepstream"
+description "A minimal D application."
+copyright "Copyright © 2016, faianca"
+authors "faianca"
+dependency "vibe-d" version="~>0.7.29-beta.1"
