@@ -6,6 +6,7 @@ import std.json;
 import event;
 import app;
 import logincallback;
+import message.constants;
 
 class DeepStreamClient {
 
@@ -21,6 +22,16 @@ class DeepStreamClient {
 
   void addConnectionChangeListener( ConnectionChangeListener connectionChangeListener ) {
       this.connection.addConnectionChangeListener( connectionChangeListener );
+  }
+
+  ConnectionState getState()
+  {
+      return this.connection.getConnectionState();
+  }
+
+  bool isConnected()
+  {
+      return true;
   }
 
   EventHandler getEventHandler()

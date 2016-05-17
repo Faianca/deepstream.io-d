@@ -7,6 +7,7 @@ import logincallback;
 import builder;
 import std.json;
 
+import vibe.http.websockets;
 import message.constants;
 import app;
 import vibe.data.json;
@@ -81,14 +82,15 @@ import vibe.data.json;
 class Connection {
 
     private{
-       DeepStreamClient client;
-       string originalUrl;
-       LoginCallback loginCallback;
-       ConnectionState connectionState;
-       TcpSocket socket;
-       string messageBuffer;
-       string buffer;
-       JSONValue authParameters;
+        DeepStreamClient client;
+        string originalUrl;
+        LoginCallback loginCallback;
+        ConnectionState connectionState;
+        TcpSocket socket;
+        string messageBuffer;
+        string buffer;
+        JSONValue authParameters;
+        WebSocket testSocket;
     }
 
     private ConnectionChangeListener[] connectStateListeners;
@@ -131,10 +133,14 @@ class Connection {
 
     private void sendAuthMessage() {
         string authMessage = MessageBuilder.getMsg(Topic.AUTH, Actions.REQUEST, this.authParameters.toString());
+        writeln(authMessage);
         this.socket.send(authMessage);
         char[1024] buffer;
-        this.socket.receive(buffer);
-        loginCallback.loginSuccess(to!string(buffer));
+        auto buf = new ubyte[authMessage.length];
+        this.socket.receive(buf);
+        string test = cast(string)buf;
+        this.connectionState = ConnectionState.OPEN;
+        loginCallback.loginSuccess(test);
     }
 
     void setState( ConnectionState connectionState ) {
@@ -165,7 +171,7 @@ class Connection {
 
     private void addConnectionListeners() {
 
-   }
+    }
 
 
 }

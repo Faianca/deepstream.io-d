@@ -16,7 +16,11 @@ class Message {
         this.data = data;
     }
 
-    public string toString() {
+    this ( string raw ) {
+        this.raw = raw;
+    }
+
+   override public string toString() {
         return this.raw;
     }
 }
@@ -25,10 +29,10 @@ import std.stdio;
 class MessageBuilder {
 
     private {
-      enum MESSAGE : string {
-        MPS = "\u001f",
-        MS = "\u001e"
-      }
+        enum MESSAGE : string {
+            MPS = "\u001f",
+            MS = "\u001e"
+        }
     }
 
     static string getMsg()
@@ -37,34 +41,43 @@ class MessageBuilder {
     }
 
     static string getMsg( Topic topic, Actions action, string data ) {
-        return topic ~ MESSAGE.MPS ~ action ~ MESSAGE.MPS ~ data ~ MESSAGE.MS;
+        //return topic ~ MESSAGE.MPS ~ action ~ MESSAGE.MPS ~ data ~ MESSAGE.MS;
+        return topic ~ "\u001f" ~ action ~ "\u001f" ~ data ~ "\u001e";
     }
 
-    static Message[] parse( string message, Connection connection ) {
+    static Message[] parse( string message ) {
         Message[] messages;
-        string[] rawMessages = message.split(MESSAGE.MS);
-        for( short i=0; i < rawMessages.length; i++ ) {
-            messages ~= parseMessage(rawMessages[ i ]) ;
+        auto rawMessages = message.split("\u001e");
+        foreach(string rawMessage; rawMessages) {
+         
+            if (rawMessage.length > 2 && rawMessage != "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0") {
+                messages ~= parseMessage(rawMessage) ;
+            }
         }
         return messages;
     }
 
     static private Message parseMessage( string message )
     {
-        string[] parts = message.split( MESSAGE.MPS );
-
-        // if( parts.length < 2 ) {
-        //     throw new Error( " Insufficient Parts" );
-        // }
-        //
-        // if( Topic.getTopic( parts[ 0 ] ) == null ) {
-        //     throw new Error( " Incorrect Type " ~ parts[ 0 ]  );
-        // }
-        //
-        // if( Actions.getAction( parts[ 1 ] ) == null ) {
-        //     throw new Error(" Incorrect Action " ~ parts[ 1 ] );
-        // }
+        auto parts = message.split("\u001f");
+        writeln("SINGLE MESSAGE");
+        writeln("\u001f");
+        writeln(message);
         writeln(parts);
+        writeln(parts.length);
+
+        if( parts.length < 2 ) {
+            throw new Error( " Insufficient Parts" );
+        }
+
+        //if( Topic.getTopic( parts[ 0 ] ) == null ) {
+        //throw new Error( " Incorrect Type " ~ parts[ 0 ]  );
+        //}
+
+        //if( Actions.getAction( parts[ 1 ] ) == null ) {
+        //throw new Error(" Incorrect Action " ~ parts[ 1 ] );
+        /*}*/
+
         return new Message( message );
 
         // return new Message( message, Topic.getTopic( parts[0] ), Actions.getAction(parts[1]));

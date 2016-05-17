@@ -5,3 +5,5 @@ __dummy.html
 *.obj
 deepstream
 node_modules/
+.idea/
+*.swp

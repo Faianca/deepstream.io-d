@@ -7,6 +7,8 @@ ds = deepstream('localhost:6021');
 ds.login({ username: 'PeterAs', password: 'sesame' }, function( success, errorEvent, data ){
     if( success ) {
       console.log("YES FODASSE");
+
+console.log(ds.getConnectionState());
     } else {
         // extra data can be optionaly sent from deepstream for
         // both successful and unsuccesful logins
@@ -15,3 +17,5 @@ ds.login({ username: 'PeterAs', password: 'sesame' }, function( success, errorEv
         // of authentication attempts has been exceeded.
     }
 });
+
+
