@@ -1,0 +1,16 @@
+2016-05-17T13:55:11.450830788 0.022447s notice: Recursively removing directory /home/faianca/dlang/deepstream/rethinkdb_data/tmp
+2016-05-17T13:55:11.463034441 0.034658s notice: Initializing directory /home/faianca/dlang/deepstream/rethinkdb_data
+2016-05-17T13:55:11.463474255 0.035091s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/faianca/dlang/deepstream/rethinkdb_data' did not already exist or is empty.)
+2016-05-17T13:55:11.463505473 0.035121s notice: Running rethinkdb 2.3.1~0trusty (GCC 4.8.2)...
+2016-05-17T13:55:11.465906188 0.037524s notice: Running on Linux 3.19.0-58-generic x86_64
+2016-05-17T13:55:11.465965452 0.037581s notice: Loading data from directory /home/faianca/dlang/deepstream/rethinkdb_data
+2016-05-17T13:55:11.540564282 0.112181s info: Automatically using cache size of 2289 MB
+2016-05-17T13:55:11.541568055 0.113184s notice: Listening for intracluster connections on port 29015
+2016-05-17T13:55:11.544330386 0.115946s notice: Listening for client driver connections on port 28015
+2016-05-17T13:55:11.544467344 0.116083s notice: Listening for administrative HTTP connections on port 8080
+2016-05-17T13:55:11.544469298 0.116085s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-05-17T13:55:11.544470925 0.116087s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-05-17T13:55:11.544471230 0.116087s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-05-17T13:55:11.544472594 0.116088s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-05-17T13:55:11.544473892 0.116090s notice: Server ready, "faianca_kxu" 89d9c5b2-2f21-43d0-9998-7b1d04ea17fa
+2016-05-17T13:55:11.564018738 0.135635s warn: Problem when checking for new versions of RethinkDB: HTTP request to update.rethinkdb.com failed.

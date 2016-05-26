@@ -1,6 +1,6 @@
 var deepstream = require('deepstream.io-client-js');
 
-ds = deepstream('localhost:6021');
+ds = deepstream('localhost:8393');
 
 // ds.getConnectionState() will now return 'AWAITING_AUTHENTICATION'
 
@@ -8,7 +8,6 @@ ds.login({ username: 'PeterAs', password: 'sesame' }, function( success, errorEv
     if( success ) {
       console.log("YES FODASSE");
 
-console.log(ds.getConnectionState());
     } else {
         // extra data can be optionaly sent from deepstream for
         // both successful and unsuccesful logins

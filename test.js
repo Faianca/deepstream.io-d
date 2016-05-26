@@ -7,6 +7,7 @@ server.set( 'host', 'localhost' );
 server.set( 'port', 6020 );
 server.set( 'permissionHandler', {
     isValidUser: function( connectionData, authData, callback ) {
+        //callback('NOT_AUTHORIZED');
         callback( null, authData.username || 'open' );
     },
 

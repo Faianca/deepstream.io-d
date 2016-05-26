@@ -50,7 +50,9 @@ class MessageBuilder {
         auto rawMessages = message.split("\u001e");
         foreach(string rawMessage; rawMessages) {
          
-            if (rawMessage.length > 2 && rawMessage != "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0") {
+            if (rawMessage.length > 2 && rawMessage != "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+                    && rawMessage != "\0\0\0\0\0\0\0\0\0"
+                    ) {
                 messages ~= parseMessage(rawMessage) ;
             }
         }
@@ -69,14 +71,6 @@ class MessageBuilder {
         if( parts.length < 2 ) {
             throw new Error( " Insufficient Parts" );
         }
-
-        //if( Topic.getTopic( parts[ 0 ] ) == null ) {
-        //throw new Error( " Incorrect Type " ~ parts[ 0 ]  );
-        //}
-
-        //if( Actions.getAction( parts[ 1 ] ) == null ) {
-        //throw new Error(" Incorrect Action " ~ parts[ 1 ] );
-        /*}*/
 
         return new Message( message );
 

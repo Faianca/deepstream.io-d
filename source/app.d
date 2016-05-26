@@ -22,7 +22,7 @@ void main()
     writeln(client.getState());
 
     while(client.isConnected()) {
-    
+         
     }
 
     client.getEventHandler.emit("bob");
@@ -61,6 +61,7 @@ auto decodePacket(string packet)
 {
     auto re = regex("([^:]+):([0-9]+)?(\\+)?:([^:]+)?:?([\\s\\S]*)?");
     auto m = match(packet, re);
+    writeln("DECODING");
     writeln(packet);
     writeln(m);
     auto type = m.captures[1];
